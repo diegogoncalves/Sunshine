@@ -1,14 +1,8 @@
 package com.ognid.sunshine;
 
-import android.app.Activity;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,10 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -65,10 +57,8 @@ public class MainActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
-        Activity activity;
 
-        public PlaceholderFragment(Activity ac) {
-            activity=ac;
+        public PlaceholderFragment() {
         }
 
         @Override
@@ -76,9 +66,10 @@ public class MainActivity extends ActionBarActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-            List<String> weekForecast=getForecast();
+            //TO-DO
+            List<String> weekForecast=new ArrayList<>(Arrays.asList(new String[]{"Rain","Sun","Cloud"}));
 
-            ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(),R.layout.list_item_forecast,R.id.list_item_forecast_textView,weekForecast);
+            ArrayAdapter<String> adapter=new ArrayAdapter<>(getActivity(),R.layout.list_item_forecast,R.id.list_item_forecast_textView,weekForecast);
 
             ListView listView=(ListView) rootView.findViewById(R.id.listView_forecast);
             listView.setAdapter(adapter);
@@ -86,51 +77,9 @@ public class MainActivity extends ActionBarActivity {
             return rootView;
         }
 
-        List<String> getForecast(){
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    activity.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected()) {
-                DownloadForecast download=new DownloadForecast();
 
-            } else {
-                // display error
-            }
-        }
 
 
     }
 
-    private class DownloadForecast extends AsyncTask<String,Void,String>{
-
-        @Override
-        protected String doInBackground(String... city) {
-            return download(city);
-        }
-
-        private String download(String city) throws IOException {
-            InputStream is=null;
-            try{
-                URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?id=3451190&cnt=10&mode=json&units=metric&APPID=43d651f8e1f3bb5f9b38ba0a16da7087");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(10000 /* milliseconds */);
-                conn.setConnectTimeout(15000 /* milliseconds */);
-                conn.setRequestMethod("GET");
-                conn.setDoInput(true);
-                // Starts the query
-                conn.connect();
-                int response = conn.getResponseCode();
-                Log.d(DEBUG_TAG, "The response is: " + response);
-                is = conn.getInputStream();
-
-                // Convert the InputStream into a string
-                String contentAsString = readIt(is, len);
-                return contentAsString;
-
-            }
-            finally {
-                if(is!=null)is.close();
-            }
-        }
-    }
 }
