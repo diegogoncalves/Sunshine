@@ -116,8 +116,8 @@ public class ForecastFragment extends Fragment {
         private String formatHighLows(double high, double low) {
             String unit=PreferenceManager
                     .getDefaultSharedPreferences(getActivity())
-                    .getString(getString(R.string.pref_unit_key), getString(R.string.pref_unit_default));
-            if(unit.equals(getString(R.string.pref_unit_imperial_label))){
+                    .getString(getString(R.string.pref_units_key), getString(R.string.pref_units_default));
+            if(unit.equals(getString(R.string.pref_units_imperial_label))){
                 high=convertToFahrenheit(high);
                 low=convertToFahrenheit(low);
             }

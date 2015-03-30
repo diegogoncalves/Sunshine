@@ -2,6 +2,8 @@ package com.ognid.sunshine.data;
 
 import android.test.AndroidTestCase;
 
+import java.sql.Wrapper;
+
 public class TestPractice extends AndroidTestCase {
     /*
         This gets run before every test.
@@ -11,8 +13,6 @@ public class TestPractice extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        w=new Wrapper();
-        w.x=10;
        // x=10;
     }
 
@@ -31,16 +31,7 @@ public class TestPractice extends AndroidTestCase {
         }
     }
 
-    public void test1(){
-        assertTrue(w.x==10);
-        w.x=90;
-    }
 
-    public void test2(){
-        assertTrue("message 1",w.x==10);
-        test1();
-        assertTrue("message 2",w.x==10);
-    }
 
 
     @Override
@@ -49,7 +40,3 @@ public class TestPractice extends AndroidTestCase {
     }
 }
 
-class Wrapper{
-    public int x;
-
-}

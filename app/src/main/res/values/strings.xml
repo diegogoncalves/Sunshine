@@ -17,13 +17,14 @@
     <string name="pref_location_default" translatable="false">94043</string>
     <string name="pref_location_key" translatable="false">location</string>
 
-    <string name="pref_unit_label">Pick your units</string>
-    <string name="pref_unit_metric_label">Metric</string>
-    <string name="pref_unit_imperial_label">Imperial</string>
-    <string name="pref_unit_key">unit</string>
-    <string name="pref_unit_default">\@string/unit_metric</string>
-    <string name="pref_unit_metric" translatable="false">Metric</string>
-    <string name="pref_unit_imperial" translatable="false">Imperial</string>
+    <string name="pref_units_label">Pick your units</string>
+    <string name="pref_units_metric_label">Metric</string>
+    <string name="pref_units_imperial_label">Imperial</string>
+    <string name="pref_units_key">unit</string>
+    <string name="pref_units_default">\@string/unit_metric</string>
+    <string name="pref_units_metric" translatable="false">Metric</string>
+    <string name="pref_units_imperial" translatable="false">Imperial</string>
+
     <string name="locationApp_not_available">No app to show location</string>
     <string name="action_share">Share</string>
 
