@@ -2,14 +2,12 @@ package com.ognid.sunshine.data;
 
 import android.test.AndroidTestCase;
 
-import java.sql.Wrapper;
-
 public class TestPractice extends AndroidTestCase {
     /*
         This gets run before every test.
      */
 
-    Wrapper w;
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
